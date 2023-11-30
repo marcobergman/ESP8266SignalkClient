@@ -8,3 +8,11 @@ To prepare the Arduino IDE, goto File->Preferences and add http://arduino.esp826
 To set up SignalK, add a Data Connection with data type 'SignalK', Signalk Source 'UDP', port '30330'. 
 
 The analog input of the ESP8266 chip has a range of 0-1.0V; the Wemos D1 Mini I used has an on-board voltage divider giving it a 0-3.3V range. Do your own research. The chip's AD converter is 10 bits only; for better resolution hook up an AD1115.
+
+To test this type of things, this code was used:
+
+```
+echo '{"updates":[{"meta":[{"path":"cell.voltage","value":{"units":"V"}}]}]}' | netcat -N -u 10.10.10.1 30330
+echo '{"updates":[{"values":[{"path":"cell.voltage","value":"87", "meta": {"units": "V", "Description": "cell voltage"}}]}]}' | netcat -N -u 10.10.10.1 30330
+```
+      
